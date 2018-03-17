@@ -68,7 +68,8 @@ public class Add extends AppCompatActivity {
                 datalist.child("To").setValue(to);
                 datalist.child("Location").setValue(location);
                 datalist.child("Name").setValue(name);
-                datalist.child("Number").setValue(number);
+                datalist.child("MaxNumber").setValue(number);
+                datalist.child("CurrentNumber").setValue(0);
             }
         });
     }
