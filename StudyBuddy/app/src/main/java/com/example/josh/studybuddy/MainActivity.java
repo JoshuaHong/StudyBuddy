@@ -9,6 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -29,15 +35,18 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
-        for (int x = 0; x < 3; x ++) {
-            Button button = new Button(this);
-            button.setText("This is the description sdfsdfsfd." + "\n" +
-                    "00:00 - " + "00:00" + "\n" + "2/3" + String.valueOf(x));
-            button.setId(x);
-            button.setOnClickListener(new View.OnClickListener() {
+        for (int x = 0; x < 0; x ++) {
+            DatabaseReference val = FirebaseDatabase.getInstance().getReference("Users/"+x+"/Description");
+            final Button button = new Button(this);
+            val.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    button.setText(dataSnapshot.getValue().toString());
+                }
 
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(),"Dynamic button" + v.getId() + " is clicked", Toast.LENGTH_SHORT).show();
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
                 }
             });
             linearLayout.addView(button);
@@ -48,4 +57,3 @@ public class MainActivity extends AppCompatActivity {
         scrollView.addView(linearLayout);
     }
 }
-

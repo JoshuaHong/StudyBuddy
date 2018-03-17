@@ -41,6 +41,33 @@ public class Add extends AppCompatActivity {
         firebaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                description = descriptionInput.getText().toString();
+                from = fromInput.getText().toString();
+                to = toInput.getText().toString();
+                location = locationInput.getText().toString();
+                name = nameInput.getText().toString();
+
+                if (numberInput.getText().toString().matches("")) {
+                    number = 2;
+                } else {
+                    number = Integer.valueOf(numberInput.getText().toString());
+                }
+
+                if (description == null) {
+                    description = " ";
+                }
+                if (from == null) {
+                    from = " ";
+                }
+                if (to == null) {
+                    to = " ";
+                }
+                if (location == null) {
+                    location = " ";
+                }
+                if (name == null) {
+                    name = " ";
+                }
                 if(description == null || from == null || to == null || location == null || name == null ) {
                     Toast.makeText(Add.this,"Please fill out all the information!",Toast.LENGTH_SHORT).show();
                 }
