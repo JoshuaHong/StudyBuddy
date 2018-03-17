@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,8 +19,9 @@ public class Add extends AppCompatActivity {
     private Button firebaseButton;
     private DatabaseReference database,dataCounter;
     private String description, from, to, location, name;
-    private int number,counter;
+    private int number, counter;
     private EditText descriptionInput, fromInput, toInput, locationInput, nameInput, numberInput;
+    private boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,46 +68,38 @@ public class Add extends AppCompatActivity {
                 if (name == null) {
                     name = " ";
                 }
-                    description = descriptionInput.getText().toString();
-                    from = fromInput.getText().toString();
-                    to = toInput.getText().toString();
-                    location = locationInput.getText().toString();
-                    name = nameInput.getText().toString();
-                    if (numberInput.getText().toString().matches("")) {
-                        number = 2;
-                    } else {
-                        number = Integer.valueOf(numberInput.getText().toString());
-                    }
-                    if (number < 2) {
-                        number = 2;
-                    }
-                    dataCounter.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+                if (number < 2) {
+                    number = 2;
+                }
+
+                dataCounter.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (flag) {
                             counter = dataSnapshot.getValue(int.class);
+                            String count = Integer.toString(counter);
+                            counter++;
+                            flag = false;
+                            dataCounter.setValue(counter);
+                            DatabaseReference datalist = database.child(count);
+                            // private DatabaseReference databasex = database.child();
+                            datalist.child("Description").setValue(description);
+                            datalist.child("From").setValue(from);
+                            datalist.child("To").setValue(to);
+                            datalist.child("Location").setValue(location);
+                            datalist.child("Name").setValue(name);
+                            datalist.child("Number").setValue(number);
+
+                            Intent intent = new Intent(Add.this, MainActivity.class);
+                            startActivity(intent);
                         }
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                        }
-                    });
-
-                    String count = Integer.toString(counter);
-                    counter++;
-                    dataCounter.setValue(counter);
-                    DatabaseReference datalist = database.child(count);
-                    // private DatabaseReference databasex = database.child();
-                    datalist.child("Description").setValue(description);
-                    datalist.child("From").setValue(from);
-                    datalist.child("To").setValue(to);
-                    datalist.child("Location").setValue(location);
-                    datalist.child("Name").setValue(name);
-                    datalist.child("Number").setValue(number);
-
-                    Intent intent = new Intent(Add.this, MainActivity.class);
-                    startActivity(intent);
-
+                    }
+                });
             }
         });
     }
