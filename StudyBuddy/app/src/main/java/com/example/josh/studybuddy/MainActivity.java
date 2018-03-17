@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean flag = true;
     private DatabaseReference dataCounter = FirebaseDatabase.getInstance().getReference("Counter");
     private int counter;
+    private int one, two;
 
     private LinearLayout linearLayout;
     private ScrollView scrollView;
@@ -52,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
                     for (int x = 0; x < counter; x++) {
 
                         final Button button = new Button(MainActivity.this);
-                        DatabaseReference val = FirebaseDatabase.getInstance().getReference("Users/" + x + "/Description");
+
+                        DatabaseReference val = FirebaseDatabase.getInstance().getReference("events/" + x + "/desc");
                         val.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         });
-                        DatabaseReference valx = FirebaseDatabase.getInstance().getReference("Users/" + x + "/From");
+                        DatabaseReference valx = FirebaseDatabase.getInstance().getReference("events/" + x + "/begin_time");
                         valx.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -76,7 +78,19 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         });
-                        DatabaseReference vald = FirebaseDatabase.getInstance().getReference("Users/" + x + "/Location");
+                        DatabaseReference valk = FirebaseDatabase.getInstance().getReference("events/" + x + "/end_time");
+                        valk.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                button.setText(button.getText() + "\n" + "To: " + dataSnapshot.getValue().toString());
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                        DatabaseReference vald = FirebaseDatabase.getInstance().getReference("events/" + x + "/location");
                         vald.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -88,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         });
-                        DatabaseReference valn = FirebaseDatabase.getInstance().getReference("Users/" + x + "/Name");
+                        DatabaseReference valn = FirebaseDatabase.getInstance().getReference("events/" + x + "/Name");
                         valn.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -100,11 +114,12 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         });
-                        DatabaseReference valq = FirebaseDatabase.getInstance().getReference("Users/" + x + "/Number");
-                        valq.addValueEventListener(new ValueEventListener() {
+                        DatabaseReference vala = FirebaseDatabase.getInstance().getReference("events/" + x + "/cur_ppl");
+                        vala.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                button.setText(button.getText() + "\n Max people: " + dataSnapshot.getValue().toString());
+                                button.setText(button.getText() + "\n Current # of people: " + dataSnapshot.getValue().toString());
+                                two = Integer.valueOf(dataSnapshot.getValue().toString());
                             }
 
                             @Override
@@ -112,11 +127,12 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         });
-                        DatabaseReference valk = FirebaseDatabase.getInstance().getReference("Users/" + x + "/To");
-                        valk.addValueEventListener(new ValueEventListener() {
+                        DatabaseReference valq = FirebaseDatabase.getInstance().getReference("events/" + x + "/max_ppl");
+                        valq.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                button.setText(button.getText() + "\n" + "To: " + dataSnapshot.getValue().toString());
+                                button.setText(button.getText() + "\n Max people: " + dataSnapshot.getValue().toString());
+                                two = Integer.valueOf(dataSnapshot.getValue().toString());
                             }
 
                             @Override

@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Add extends AppCompatActivity {
 
     private Button firebaseButton;
-    private DatabaseReference database,dataCounter;
+    private DatabaseReference database, dataCounter;
     private String description, from, to, location, name;
     private int number, counter;
     private EditText descriptionInput, fromInput, toInput, locationInput, nameInput, numberInput;
@@ -30,7 +30,7 @@ public class Add extends AppCompatActivity {
 
         dataCounter = FirebaseDatabase.getInstance().getReference("Counter");
         firebaseButton = (Button) findViewById(R.id.submit);
-        database = FirebaseDatabase.getInstance().getReference("Users");
+        database = FirebaseDatabase.getInstance().getReference("events");
         descriptionInput = (EditText) findViewById(R.id.description);
         fromInput = (EditText) findViewById(R.id.from);
         toInput = (EditText) findViewById(R.id.to);
@@ -83,12 +83,13 @@ public class Add extends AppCompatActivity {
                             dataCounter.setValue(counter);
                             DatabaseReference datalist = database.child(count);
                             // private DatabaseReference databasex = database.child();
-                            datalist.child("Description").setValue(description);
-                            datalist.child("From").setValue(from);
-                            datalist.child("To").setValue(to);
-                            datalist.child("Location").setValue(location);
+                            datalist.child("desc").setValue(description);
+                            datalist.child("begin_time").setValue(from);
+                            datalist.child("end_time").setValue(to);
+                            datalist.child("location").setValue(location);
                             datalist.child("Name").setValue(name);
-                            datalist.child("Number").setValue(number);
+                            datalist.child("max_ppl").setValue(number);
+                            datalist.child("cur_ppl").setValue(1);
 
                             Intent intent = new Intent(Add.this, MainActivity.class);
                             startActivity(intent);
