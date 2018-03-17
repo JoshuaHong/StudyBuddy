@@ -1,5 +1,6 @@
 package com.example.josh.studybuddy;
 
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,14 +40,36 @@ public class Add extends AppCompatActivity {
         firebaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
-
                 description = descriptionInput.getText().toString();
                 from = fromInput.getText().toString();
                 to = toInput.getText().toString();
                 location = locationInput.getText().toString();
                 name = nameInput.getText().toString();
-                number = Integer.valueOf(numberInput.getText().toString());
+
+                if (numberInput.getText().toString().matches("")) {
+                    number = 2;
+                } else {
+                    number = Integer.valueOf(numberInput.getText().toString());
+                }
+                    
+                if (description == null) {
+                    description = " ";
+                }
+                if (from == null) {
+                    from = " ";
+                }
+                if (to == null) {
+                    to = " ";
+                }
+                if (location == null) {
+                    location = " ";
+                }
+                if (name == null) {
+                    name = " ";
+                }
+                if (number < 2) {
+                    number = 2;
+                }
                 dataCounter.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -58,17 +81,21 @@ public class Add extends AppCompatActivity {
 
                     }
                 });
+
                 String count = Integer.toString(counter);
                 counter++;
                 dataCounter.setValue(counter);
                 DatabaseReference datalist = database.child(count);
-               // private DatabaseReference databasex = database.child();
+                // private DatabaseReference databasex = database.child();
                 datalist.child("Description").setValue(description);
                 datalist.child("From").setValue(from);
                 datalist.child("To").setValue(to);
                 datalist.child("Location").setValue(location);
                 datalist.child("Name").setValue(name);
                 datalist.child("Number").setValue(number);
+
+                Intent intent = new Intent(Add.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
