@@ -51,7 +51,6 @@ public class Add extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         counter = dataSnapshot.getValue(int.class);
-                        dataCounter.setValue(counter+1);
                     }
 
                     @Override
@@ -60,6 +59,8 @@ public class Add extends AppCompatActivity {
                     }
                 });
                 String count = Integer.toString(counter);
+                counter++;
+                dataCounter.setValue(counter);
                 DatabaseReference datalist = database.child(count);
                // private DatabaseReference databasex = database.child();
                 datalist.child("Description").setValue(description);
