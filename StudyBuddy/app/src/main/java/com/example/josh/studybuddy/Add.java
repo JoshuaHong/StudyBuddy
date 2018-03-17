@@ -41,7 +41,6 @@ public class Add extends AppCompatActivity {
         firebaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
                 description = descriptionInput.getText().toString();
                 from = fromInput.getText().toString();
                 to = toInput.getText().toString();
@@ -68,10 +67,9 @@ public class Add extends AppCompatActivity {
                 }
                 if (name == null) {
                     name = " ";
-=======
-                if(description == null || from == null || to == null || location == null || name == null ) {
+                }
+                    if(description == null || from == null || to == null || location == null || name == null ) {
                     Toast.makeText(Add.this,"Please fill out all the information!",Toast.LENGTH_SHORT).show();
->>>>>>> 33191435539e94ecbc147c4cb2c2a68ecf24b9b4
                 }
                 else {
 
