@@ -1,20 +1,24 @@
 package com.example.josh.studybuddy;
 
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Add extends AppCompatActivity {
 
     private Button firebaseButton;
-    private DatabaseReference database;
+    private DatabaseReference database,dataCounter;
     private String description, from, to, location, name;
-    private int number;
+    private int number,counter;
     private EditText descriptionInput, fromInput, toInput, locationInput, nameInput, numberInput;
 
     @Override
@@ -22,6 +26,7 @@ public class Add extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        dataCounter = FirebaseDatabase.getInstance().getReference("Counter");
         firebaseButton = (Button) findViewById(R.id.submit);
         database = FirebaseDatabase.getInstance().getReference("Users");
         descriptionInput = (EditText) findViewById(R.id.description);
@@ -42,13 +47,27 @@ public class Add extends AppCompatActivity {
                 location = locationInput.getText().toString();
                 name = nameInput.getText().toString();
                 number = Integer.valueOf(numberInput.getText().toString());
+                dataCounter.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        counter = dataSnapshot.getValue(int.class);
+                        dataCounter.setValue(counter+1);
+                    }
 
-                database.child("Description").setValue(description);
-                database.child("from").setValue(from);
-                database.child("to").setValue(to);
-                database.child("location").setValue(location);
-                database.child("name").setValue(name);
-                database.child("number").setValue(number);
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                String count = Integer.toString(counter);
+                DatabaseReference datalist = database.child(count);
+               // private DatabaseReference databasex = database.child();
+                datalist.child("Description").setValue(description);
+                datalist.child("From").setValue(from);
+                datalist.child("To").setValue(to);
+                datalist.child("Location").setValue(location);
+                datalist.child("Name").setValue(name);
+                datalist.child("Number").setValue(number);
             }
         });
     }
