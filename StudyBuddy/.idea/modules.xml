@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/StudyBuddy.iml" filepath="$PROJECT_DIR$/StudyBuddy.iml" />
-      <module fileurl="file://C:\Users\ChooA\Documents\GitHub\StudyBuddy\StudyBuddy\StudyBuddy.iml" filepath="C:\Users\ChooA\Documents\GitHub\StudyBuddy\StudyBuddy\StudyBuddy.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\ChooA\Documents\GitHub\StudyBuddy\StudyBuddy\app\app.iml" filepath="C:\Users\ChooA\Documents\GitHub\StudyBuddy\StudyBuddy\app\app.iml" />
     </modules>
   </component>
 </project>

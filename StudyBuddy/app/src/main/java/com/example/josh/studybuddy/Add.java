@@ -68,17 +68,11 @@ public class Add extends AppCompatActivity {
                 if (name == null) {
                     name = " ";
                 }
-                if(description == null || from == null || to == null || location == null || name == null ) {
-                    Toast.makeText(Add.this,"Please fill out all the information!",Toast.LENGTH_SHORT).show();
-                }
-                else {
-
                     description = descriptionInput.getText().toString();
                     from = fromInput.getText().toString();
                     to = toInput.getText().toString();
                     location = locationInput.getText().toString();
                     name = nameInput.getText().toString();
-
                     if (numberInput.getText().toString().matches("")) {
                         number = 2;
                     } else {
@@ -113,7 +107,7 @@ public class Add extends AppCompatActivity {
 
                     Intent intent = new Intent(Add.this, MainActivity.class);
                     startActivity(intent);
-                }
+
             }
         });
     }
