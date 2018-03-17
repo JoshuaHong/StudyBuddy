@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "113310451479",
+    "firebase_url": "https://studybuddy-joshuahong.firebaseio.com",
+    "project_id": "studybuddy-joshuahong",
+    "storage_bucket": "studybuddy-joshuahong.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113310451479:android:e7b7432b71c5ca36",
+        "android_client_info": {
+          "package_name": "com.example.josh.studybuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113310451479-epitg1c5qdstltu1di97o7akd171ldv7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.josh.studybuddy",
+            "certificate_hash": "94e33e2847c64b096ba74cdd80f5245afcb62186"
+          }
+        },
+        {
+          "client_id": "113310451479-qtchmp4mgq2m1d2jfqero4emstf62e27.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWkiWmfxcxuaSjT5oRlY0H0iFwxJbjw88"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113310451479-qtchmp4mgq2m1d2jfqero4emstf62e27.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
