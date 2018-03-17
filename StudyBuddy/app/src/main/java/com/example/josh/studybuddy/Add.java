@@ -51,7 +51,7 @@ public class Add extends AppCompatActivity {
                 } else {
                     number = Integer.valueOf(numberInput.getText().toString());
                 }
-                    
+
                 if (description == null) {
                     description = " ";
                 }
