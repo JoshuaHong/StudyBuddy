@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean flag = true;
     private DatabaseReference dataCounter = FirebaseDatabase.getInstance().getReference("Counter");
     private int counter;
-    String top;
+
     private LinearLayout linearLayout;
     private ScrollView scrollView;
 
@@ -50,12 +50,13 @@ public class MainActivity extends AppCompatActivity {
                     dataCounter.setValue(counter);
 
                     for (int x = 0; x < counter; x++) {
+
                         final Button button = new Button(MainActivity.this);
                         DatabaseReference val = FirebaseDatabase.getInstance().getReference("Users/" + x + "/Description");
                         val.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                button.setText(button.getText()+"\n"+dataSnapshot.getValue().toString());
+                                button.setText(dataSnapshot.getValue().toString());
                             }
 
                             @Override
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         valx.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                button.setText(button.getText()+"\n From: "+dataSnapshot.getValue().toString());
+                                button.setText(button.getText() + "\n From: " + dataSnapshot.getValue().toString());
                             }
 
                             @Override
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         vald.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                button.setText(button.getText()+"\n"+dataSnapshot.getValue().toString());
+                                button.setText(button.getText() + "\n" + dataSnapshot.getValue().toString());
                             }
 
                             @Override
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         valn.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                button.setText(button.getText()+"\n Name: "+dataSnapshot.getValue().toString());
+                                button.setText(button.getText() + "\n Name: " + dataSnapshot.getValue().toString());
                             }
 
                             @Override
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         valq.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                button.setText(button.getText()+"\n Max people: "+dataSnapshot.getValue().toString());
+                                button.setText(button.getText() + "\n Max people: " + dataSnapshot.getValue().toString());
                             }
 
                             @Override
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                         valk.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                button.setText(button.getText()+"\n"+"To: "+ dataSnapshot.getValue().toString());
+                                button.setText(button.getText() + "\n" + "To: " + dataSnapshot.getValue().toString());
                             }
 
                             @Override
