@@ -23,7 +23,7 @@ public class Add extends AppCompatActivity {
         setContentView(R.layout.activity_add);
 
         firebaseButton = (Button) findViewById(R.id.submit);
-        database = FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance().getReference("Users");
         descriptionInput = (EditText) findViewById(R.id.description);
         fromInput = (EditText) findViewById(R.id.from);
         toInput = (EditText) findViewById(R.id.to);
